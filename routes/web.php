@@ -13,4 +13,5 @@ Route::group(['prefix'=>'produtos', 'middleware'=>'auth'], function (){
     Route::get('/edit/{id}', ['as'=>'produtos.edit', 'uses'=>'ProdutosController@edit']);
     Route::put('/update/{id}', ['as'=>'produtos.update', 'uses'=>'ProdutosController@update']);
     Route::get('/destroy/{id}', ['as'=>'produtos.destroy', 'uses'=>'ProdutosController@destroy']);
+     Route::post('/buscar', ['as'=>'produtos.buscar', 'uses'=>'ProdutosController@buscar']);
 });

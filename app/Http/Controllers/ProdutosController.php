@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class ProdutosController extends Controller
 {
     public function index(){
-        $produtos = Produtos::all();
+        $produtos = Produtos::paginate(8);
         return view('produtos.index', compact('produtos'));
 
     }
@@ -103,5 +103,16 @@ class ProdutosController extends Controller
 
         Session::flash('success', 'Produdo foi apagado com sucesso!');
         return redirect()->route('produtos.index');
+    }
+
+    public function buscar(Request $request){
+
+        $buscar = $request->input('busca');
+
+        $produtos = Produtos::where('titulo', 'like', '%'.$buscar.'%')
+                            ->orwhere('descricao', 'like', '%'.$buscar.'%')
+                            ->paginate(8);
+
+        return view('produtos.index', compact('produtos', 'buscar'));
     }
 }
