@@ -1,6 +1,10 @@
 <?php
 
-Route::group(['prefix'=>'produtos'], function (){
+Route::get('/login', ['as'=>'login', 'uses'=>'LoginController@index']);
+Route::post('/login/entrar', ['as'=>'login.entrar', 'uses'=>'LoginController@entrar']);
+Route::get('/login/sair', ['as'=>'login.sair', 'uses'=>'LoginController@sair']);
+
+Route::group(['prefix'=>'produtos', 'middleware'=>'auth'], function (){
     Route::get('/', ['as'=>'produtos.index', 'uses'=>'ProdutosController@index']);
     Route::get('/index', ['as'=>'produtos.index', 'uses'=>'ProdutosController@index']);
     Route::get('/create', ['as'=>'produtos.create', 'uses'=>'ProdutosController@create']);

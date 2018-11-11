@@ -1,7 +1,11 @@
 @extends('layout.app')
 @section('title', 'Lista de Produtos')
 @section('content')
-    <h1>Produtos</h1>
+
+    <div class="col-md-12">
+        <h1 class="col-md-10">Produtos</h1>
+        <h3><a class="col-md-2" href="{{ route('login.sair') }}">Sair</a></h3>
+    </div>
     <div class="row">
         @foreach($produtos as $produto)
             <div class="col-md-3">
